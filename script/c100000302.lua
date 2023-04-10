@@ -48,6 +48,9 @@ end
 function s.thfilter(c)
 	return c:IsSetCard(0x38d) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
 end
+function s.filter(c)
+	return c:IsFaceup() and c:GetAttack()>0
+end
 function s.rectg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and s.filter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(s.filter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
