@@ -27,7 +27,7 @@ function s.initial_effect(c)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e3)
 end
-s.listed_names={id+1}
+s.listed_names={id-1}
 s.listed_series={0x38d}
 function s.spcfilter(c)
 	return c:IsFaceup() and c:IsCode(id+1)
