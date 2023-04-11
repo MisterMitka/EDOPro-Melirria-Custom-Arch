@@ -27,6 +27,7 @@ function s.initial_effect(c)
 	local e3=e2:Clone()
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e3)
+end
 s.listed_names={id+1, id+2}
 s.listed_series={0x38d}
 function s.spcfilter(c)
