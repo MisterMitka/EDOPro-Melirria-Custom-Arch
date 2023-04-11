@@ -21,8 +21,8 @@ function s.initial_effect(c)
 	e2:SetCode(EVENT_SUMMON_SUCCESS)
 	e2:SetCountLimit(1)
 	e2:SetCondition(s.dacon)
-	e2:SetTarget(s.thtg)
-	e2:SetOperation(s.thop)
+	e2:SetTarget(s.datg)
+	e2:SetOperation(s.daop)
 	c:RegisterEffect(e2)
 	local e3=e2:Clone()
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -31,10 +31,7 @@ end
 s.listed_names={id+1, id+2}
 s.listed_series={0x38d}
 function s.spcfilter(c)
-	return c:IsFaceup() and c:IsCode(id+1)
-end
-function s.spcfilter(c)
-	return c:IsFaceup() and c:IsCode(id+2)
+	return c:IsFaceup() and (c:IsCode(id+1) or c:IsCode(id+2))
 end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(s.spcfilter,tp,LOCATION_ONFIELD,0,1,nil)
