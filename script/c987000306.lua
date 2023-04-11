@@ -1,0 +1,16 @@
+--Rescuer of Melirria - Umeko Kimura
+local s,id=GetID()
+function s.initial_effect(c)
+--pos change and disable
+	local e1=Effect.CreateEffect(c)
+	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e1:SetType(EFFECT_TYPE_TRIGGER_O+EFFECT_TYPE_SINGLE)
+	e1:SetProperty(EFFECT_FLAG_DELAY)
+	e1:SetRange(LOCATION_MZONE)
+	e1:SetHintTiming(0,TIMINGS_CHECK_MONSTER)
+	e1:SetCountLimit(1,id)
+	e1:SetCondition(s.poscon)
+	e1:SetTarget(s.postg)
+	e1:SetOperation(s.posop)
+	c:RegisterEffect(e1)
