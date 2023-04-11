@@ -30,7 +30,7 @@ end
 s.listed_names={id-1}
 s.listed_series={0x38d}
 function s.spcfilter(c)
-	return c:IsFaceup() and c:IsCode(id+1)
+	return c:IsFaceup() and c:IsCode(id-1)
 end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(s.spcfilter,tp,LOCATION_ONFIELD,0,1,nil)
