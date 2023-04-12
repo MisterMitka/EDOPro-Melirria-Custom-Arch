@@ -28,7 +28,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 s.listed_names={id+1, id+2}
-s.listed_series={0x38d}
+s.listed_series={0x3dd}
 function s.spcfilter(c)
 	return c:IsFaceup() and (c:IsCode(id+1) or c:IsCode(id+2))
 end
