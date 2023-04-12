@@ -15,8 +15,7 @@ function s.initial_effect(c)
 	--Target for direct attack
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(id,0))
-	e2:SetType(EFFECT_TYPE_SINGLE)
-	e2:SetCategory(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_SUMMON_SUCCESS)
 	e2:SetCountLimit(1)
@@ -45,9 +44,6 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 end
-function s.thfilter(c)
-	return c:IsSetCard(0x3dd) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
-end
 function s.filter(c)
 	return c:IsSetCard(0x3dd) and c:IsType(TYPE_MONSTER) and c:IsFaceup()
 end
@@ -67,18 +63,18 @@ function s.daop(e,tp,eg,ep,ev,re,r,rp)
 	if tc:IsRelateToEffect(e) then
 		--Can attack directly this turn
 		local e1=Effect.CreateEffect(c)
-		e4:SetDescription(aux.Stringid(id,0))
-		e4:SetProperty(EFFECT_FLAG_CLIENT_HINT)
-		e4:SetType(EFFECT_TYPE_SINGLE)
-		e4:SetCode(EFFECT_DIRECT_ATTACK)
-		e4:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
+		e1:SetDescription(aux.Stringid(id,0))
+		e1:SetProperty(EFFECT_FLAG_CLIENT_HINT)
+		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetCode(EFFECT_DIRECT_ATTACK)
+		e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 		tc:RegisterEffect(e1)
 		--Reduce damage
 		local e3=Effect.CreateEffect(c)
-		e5:SetType(EFFECT_TYPE_SINGLE)
-		e5:SetCode(EFFECT_CHANGE_BATTLE_DAMAGE)
-		e5:SetCondition(s.rdcon)
-		e5:SetValue(aux.ChangeBattleDamage(1,HALF_DAMAGE))
+		e2:SetType(EFFECT_TYPE_SINGLE)
+		e2:SetCode(EFFECT_CHANGE_BATTLE_DAMAGE)
+		e2:SetCondition(s.rdcon)
+		e2:SetValue(aux.ChangeBattleDamage(1,HALF_DAMAGE))
 		tc:RegisterEffect(e3)
 	end
 end
