@@ -75,6 +75,6 @@ function s.daop(e,tp,eg,ep,ev,re,r,rp)
 		e2:SetCode(EFFECT_CHANGE_BATTLE_DAMAGE)
 		e2:SetCondition(s.rdcon)
 		e2:SetValue(aux.ChangeBattleDamage(1,HALF_DAMAGE))
-		tc:RegisterEffect(e3)
+		tc:RegisterEffect(e2)
 	end
 end
