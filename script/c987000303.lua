@@ -45,8 +45,11 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 end
-function s.filter(c)
+function s.thfilter(c)
 	return c:IsSetCard(0x3dd) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
+end
+function s.filter(c)
+	return c:IsSetCard(0x3dd) and c:IsType(TYPE_MONSTER) and c:IsFaceup()
 end
 function s.datg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and s.filter(chkc) end
