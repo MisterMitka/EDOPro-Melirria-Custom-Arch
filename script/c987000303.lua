@@ -70,7 +70,7 @@ function s.daop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 		tc:RegisterEffect(e1)
 		--Reduce damage
-		local e3=Effect.CreateEffect(c)
+		local e2=Effect.CreateEffect(c)
 		e2:SetProperty(EFFECT_FLAG_CLIENT_HINT)
 		e2:SetType(EFFECT_TYPE_SINGLE)
 		e2:SetCode(EFFECT_CHANGE_BATTLE_DAMAGE)
