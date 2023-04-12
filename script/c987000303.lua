@@ -71,7 +71,6 @@ function s.daop(e,tp,eg,ep,ev,re,r,rp)
 		tc:RegisterEffect(e1)
 		--Reduce damage
 		local e2=Effect.CreateEffect(c)
-		e2:SetProperty(EFFECT_FLAG_CLIENT_HINT)
 		e2:SetType(EFFECT_TYPE_SINGLE)
 		e2:SetCode(EFFECT_CHANGE_BATTLE_DAMAGE)
 		e2:SetCondition(s.rdcon)
