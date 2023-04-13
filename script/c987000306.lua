@@ -21,6 +21,9 @@ function s.initial_effect(c)
 	e2:SetTarget(s.target)
 	e2:SetOperation(s.operation)
 	c:RegisterEffect(e2)
+	local e3=e2:Clone()
+	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
+	c:RegisterEffect(e3)
 end
 s.listed_series={0x38d}
 function s.filter(chkc)
@@ -38,6 +41,9 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 	if tc and tc:IsFaceup() and tc:IsControler(1-tp) and tc:IsRelateToEffect(e) then
 		Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE,0,POS_FACEUP_DEFENSE,0,POS_FACEUP_ATTACK,0)
 	end
+end
+function s.filter(c)
+	return c:IsSetCard(0x38d) and c:IsType(TYPE_MONSTER) and c:IsFaceup()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(1-tp) and chkc:IsFaceup() end
