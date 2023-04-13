@@ -9,7 +9,6 @@ function s.initial_effect(c)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetHintTiming(0,TIMINGS_CHECK_MONSTER)
 	e1:SetCountLimit(1,{id,0})
-	e1:SetCondition(s.poscon)
 	e1:SetTarget(s.postg)
 	e1:SetOperation(s.posop)
 	c:RegisterEffect(e1)
@@ -24,7 +23,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 s.listed_series={0x38d}
-function s.filter(c)
+function s.filter(chkc)
 	return c:IsFaceup() and c:IsCanChangePosition()
 end
 function s.postg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
