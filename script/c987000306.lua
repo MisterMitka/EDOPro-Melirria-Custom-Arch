@@ -14,9 +14,9 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetCode(EVENT_SUMMON_SUCCESS)
 	e2:SetCategory(CATEGORY_ATKCHANGE+CATEGORY_DEFCHANGE+CATEGORY_POSITION)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1,{id,1})
 	e2:SetTarget(s.target)
 	e2:SetOperation(s.operation)
@@ -26,7 +26,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 s.listed_series={0x38d}
-function s.filter(chkc)
+function s.filter(c)
 	return c:IsFaceup() and c:IsCanChangePosition()
 end
 function s.postg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
@@ -39,7 +39,7 @@ end
 function s.posop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc and tc:IsFaceup() and tc:IsControler(1-tp) and tc:IsRelateToEffect(e) then
-		Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE,0,POS_FACEUP_DEFENSE,0,POS_FACEUP_ATTACK,0)
+		Duel.ChangePosition(tc,POS_FACEUP_DEFENSE,POS_FACEDOWN_DEFENSE,POS_FACEUP_ATTACK,POS_FACEUP_ATTACK)
 	end
 end
 function s.filter(c)
