@@ -57,3 +57,4 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 		sc:RegisterEffect(e3)
 end
 end
+end
