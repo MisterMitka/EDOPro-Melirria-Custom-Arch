@@ -42,11 +42,15 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 end
-function s.atktg(c)
+function s.atkfil(c)
 	return c:IsFaceup() and c:IsSetCard(0x38d)
 end
-function s.atkop
-	local g=Duel.GetMatchingGroup(s.atktg,tp,LOCATION_MZONE,0,nil)
+	function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.atkfil,tp,LOCATION_MZONE,0,1,nil) end
+end
+function s.atkop(e,tp,eg,ep,ev,re,r,rp)
+	local c=e:GetHandler()
+	local g=Duel.GetMatchingGroup(s.atkfil,tp,LOCATION_MZONE,0,nil)
 	if #g>0 then
 	local sc=g:GetFirst()
 	for sc in aux.Next(g) do
