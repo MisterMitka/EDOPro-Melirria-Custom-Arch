@@ -26,9 +26,6 @@ function s.postg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local g=Duel.SelectTarget(tp,s.filter,tp,0,LOCATION_MZONE,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_POSITION,g,1,0,0)
 end
-function s.filter(c)
-	return c:IsSetCard(0x38d) and c:IsFaceup()
-end
 function s.posop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
@@ -47,7 +44,7 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 		tc:RegisterEffect(e2)
 end
 function s.atkfil(c)
-	return c:IsFaceup() and c:IsSetCard(0x3dd)
+	return c:IsFaceup() and c:IsSetCard(0x38d)
 end
 	function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.atkfil,tp,LOCATION_MZONE,0,1,nil) end
