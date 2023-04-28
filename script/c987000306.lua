@@ -36,7 +36,7 @@ end
 function s.filter(c)
 	return c:IsSetCard(0x38d) and c:IsType(TYPE_MONSTER) and c:IsFaceup()
 end
-function s.atkop(e,tp,eg,ep,ev,re,r,rp)
+function s.operation(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
 		local e1=Effect.CreateEffect(e:GetHandler())
