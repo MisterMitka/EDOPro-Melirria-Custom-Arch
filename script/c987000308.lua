@@ -36,7 +36,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if #g>0 then
 		Duel.ConfirmCards(tp,g)
 		Duel.Hint(HINT_CARD,tp,HINTCARD_OPPO)
-		local tg=g:FilterSelect(tp,Card.IsMonster,Card.IsSpell,Card.IsTrap,1,1,nil)
+		local tg=g:FilterSelect(tp,Card.IsMonster,1,1,nil)
 		local tc=tg:GetFirst()
 		if tc then
 			local c=tc:GetCardTarget()
