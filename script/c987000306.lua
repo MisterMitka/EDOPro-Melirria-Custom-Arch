@@ -49,6 +49,9 @@ end
 function s.atkfil(c)
 	return c:IsFaceup() and c:IsSetCard(0x38d)
 end
+	function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.atkfil,tp,LOCATION_MZONE,0,1,nil) end
+end
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local g=Duel.GetMatchingGroup(s.atkfil,tp,LOCATION_MZONE,0,nil)
