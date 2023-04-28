@@ -62,3 +62,4 @@ function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 		sc:RegisterEffect(e1)
 	end
 end
+end
