@@ -13,8 +13,12 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 s.listed_series={0x38d}
+function s.filter(c)
+	return c:IsFaceup() and c:IsSetCard(0x38d)
+end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsSetCard,0x38d),tp,LOCATION_MZONE,0,2,nil)
+	local g=Duel.GetMatchingGroup(s.filter,tp,LOCATION_MZONE,0,nil)
+	return g:GetClassCount(Card.GetAttribute)>=2
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
