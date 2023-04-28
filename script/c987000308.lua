@@ -44,6 +44,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 			elseif e:GetLabel()==1 then g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_SPELL)
 			else g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_TRAP) 
 			end
+				Duel.Destroy(tc,REASON_EFFECT)
 				Duel.Damage(1-tp,500,REASON_EFFECT)
 			else
 				Duel.Damage(tp,500,REASON_EFFECT)
