@@ -17,7 +17,8 @@ function s.initial_effect(c)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e2)
 end
-	function s.tg(e,c)
+s.listed_series={0x38d}
+function s.tg(e,c)
 	return c:IsFaceup() and c:IsSetCard(0x3dd) and c:GetCode()~=id
 	end
 	function s.costfilter(c)
@@ -35,7 +36,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if #g>0 then
 		Duel.ConfirmCards(tp,g)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_OPPO)
-		local tg=g:FilterSelect(tp,Card.IsMonster,1,1,nil)
+		local tg=g:FilterSelect(tp,Card.IsType,1,1,nil)
 		local tc=tg:GetFirst()
 		if tc then
 			local card=tc:GetType
@@ -45,7 +46,6 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 			else
 				Duel.Damage(tp,500,REASON_EFFECT)
 			end
-		end
 		end
 		Duel.ShuffleHand(1-tp)
 	end
