@@ -51,3 +51,4 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ShuffleHand(1-tp)
 	end
 end
+end
