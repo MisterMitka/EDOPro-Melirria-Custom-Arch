@@ -45,6 +45,7 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 		e2:SetReset(RESET_EVENT+RESETS_STANDARD)
 		e2:SetValue(tc:GetDefense()/2)
 		tc:RegisterEffect(e2)
+	local c=e:GetHandler()
 	local g=Duel.GetMatchingGroup(s.atkfil,tp,LOCATION_MZONE,0,nil)
 	if #g>0 then
 	local sc=g:GetFirst()
