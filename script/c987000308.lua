@@ -4,11 +4,9 @@ function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(id,0))
-	e1:SetType(EFFECT_TYPE_TRIGGER_O+EFFECT_TYPE_SINGLE)
-	e1:SetRange(LOCATION_MZONE)
-	e1:SetProperty(EFFECT_FLAG_DELAY)
+	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
-	e1:SetCountLimit(1)
+	e1:SetCountLimit(1,{id,0})
 	e1:SetCost(s.cost)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
@@ -17,33 +15,29 @@ function s.initial_effect(c)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e2)
 end
-s.listed_series={0x38d}
-function s.tg(e,c)
-	return c:IsFaceup() and c:IsSetCard(0x3dd) and c:GetCode()~=id
-	end
-	function s.costfilter(c)
-	return c:IsSetCard(0x3dd) and c:IsDiscardable()
+function s.descfilter(c,tp)
+	local tpe=c:GetType()
+	return tpe~=0 and c:IsDiscardable()
 end
 function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) end
-	Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.descfilter,tp,LOCATION_HAND,0,1,nil,tp) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)
+	Duel.DiscardHand(tp,s.descfilter,1,1,REASON_COST+REASON_DISCARD,nil,tp)
+	local g=Duel.GetOperatedGroup()
+	e:SetLabel(g:GetFirst():GetType()&0x7)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFieldGroupCount(tp,0,LOCATION_HAND)>0 end
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetFieldGroup(tp,0,LOCATION_HAND)
+	local th=e:GetLabel()
 	if #g>0 then
 		Duel.ConfirmCards(tp,g)
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMGS_OPPO)
-		local tg=g:FilterSelect(tp,Card.IsMonster,1,1,nil)
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_OPPO)
+		local tg=g:FilterSelect(tp,Card.IsType,1,1,nil,th)
 		local tc=tg:GetFirst()
 		if tc then
-			local c=tc:GetCardTarget()
-			if e:GetLabel()==0 then g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_MONSTER)
-			elseif e:GetLabel()==1 then g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_SPELL)
-			else g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_TRAP) 
-			end
 				Duel.Destroy(tc,REASON_EFFECT)
 				Duel.Damage(1-tp,500,REASON_EFFECT)
 			else
@@ -51,4 +45,4 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 			end
 		end
 		Duel.ShuffleHand(1-tp)
-end
+	end
