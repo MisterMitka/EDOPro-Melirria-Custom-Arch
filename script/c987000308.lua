@@ -35,8 +35,8 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetFieldGroup(tp,0,LOCATION_HAND)
 	if #g>0 then
 		Duel.ConfirmCards(tp,g)
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_OPPO)
-		local tg=g:FilterSelect(tp,Card.IsMonster,1,1,nil)
+		Duel.Hint(HINT_CARD,tp,HINTCARD_OPPO)
+		local tg=g:FilterSelect(tp,Card.IsMonster,Card.IsSpell,Card.IsTrap,1,1,nil)
 		local tc=tg:GetFirst()
 		if tc then
 			local c=tc:GetCardTarget()
