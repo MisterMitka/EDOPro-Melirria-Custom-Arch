@@ -11,6 +11,18 @@ function s.initial_effect(c)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
+	--Gain 500 ATK
+	local e2=Effect.CreateEffect(c)
+	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e2:SetProperty(EFFECT_FLAG_DELAY)
+	e2:SetCode(EVENT_SUMMON_SUCCESS)
+	e2:SetTarget(s.atktg)
+	e2:SetOperation(s.atkop)
+	c:RegisterEffect(e2)
+	local e3=e2:Clone()
+	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
+	c:RegisterEffect(e3)
 end
 s.listed_series={0x38d}
 function s.filter(c)
@@ -29,4 +41,19 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
 	Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
+end
+function s.atktg(c)
+	return c:IsFaceup() and c:IsSetCard(0x38d)
+end
+function s.atkop
+	local g=Duel.GetMatchingGroup(s.atktg,tp,LOCATION_MZONE,0,nil)
+	if #g>0 then
+	local sc=g:GetFirst()
+	for sc in aux.Next(g) do
+		local e1=Effect.CreateEffect(c)
+		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetCode(EFFECT_UPDATE_ATTACK)
+		e1:SetValue(500)
+		e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
+		sc:RegisterEffect(e1)
 end
