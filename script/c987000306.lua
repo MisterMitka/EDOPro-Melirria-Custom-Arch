@@ -53,7 +53,7 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 		local e3=Effect.CreateEffect(c)
 		e3:SetType(EFFECT_TYPE_SINGLE)
 		e3:SetCode(EFFECT_UPDATE_ATTACK)
-		e3:SetValue(e:GetAttack())
+		e3:SetValue(sc:GetAttack())
 		e3:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 		sc:RegisterEffect(e3)
 end
