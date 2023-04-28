@@ -39,10 +39,11 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 		local tg=g:FilterSelect(tp,Card.IsMonster,Card.IsSpell,Card.IsTrap,1,1,nil)
 		local tc=tg:GetFirst()
 		if tc then
-			local atk=tc:GetCardTarget()
+			local c=tc:GetCardTarget()
 			if e:GetLabel()==0 then g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_MONSTER)
 			elseif e:GetLabel()==1 then g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_SPELL)
-			else g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_TRAP) end
+			else g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_TRAP) 
+			end
 				Duel.Damage(1-tp,500,REASON_EFFECT)
 			else
 				Duel.Damage(tp,500,REASON_EFFECT)
@@ -50,5 +51,4 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 		end
 		Duel.ShuffleHand(1-tp)
 	end
-end
 end
