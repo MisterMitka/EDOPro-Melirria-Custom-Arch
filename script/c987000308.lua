@@ -36,12 +36,13 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if #g>0 then
 		Duel.ConfirmCards(tp,g)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_OPPO)
-		local tg=g:FilterSelect(tp,Card.IsMonster,1,1,nil)
+		local tg=g:FilterSelect(tp,Card.IsMonster,Card.IsSpell,Card.IsTrap,1,1,nil)
 		local tc=tg:GetFirst()
 		if tc then
-			local atk=tc:GetAttack()
-			if tc:IsAttackAbove(0) and Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsAttackAbove,atk),tp,LOCATION_MZONE,0,1,nil) then
-				Duel.Destroy(tc,REASON_EFFECT)
+			local atk=tc:GetCardTarget()
+			if e:GetLabel()==0 then g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_MONSTER)
+			elseif e:GetLabel()==1 then g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_SPELL)
+			else g=Duel.SelectMatchingCard(1-tp,s.tgfilter,1-tp,LOCATION_HAND,0,1,1,nil,TYPE_TRAP) end
 				Duel.Damage(1-tp,500,REASON_EFFECT)
 			else
 				Duel.Damage(tp,500,REASON_EFFECT)
