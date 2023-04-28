@@ -9,8 +9,8 @@ function s.initial_effect(c)
 	e1:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
 	e1:SetCountLimit(1,{id,1})
-	e1:SetTarget(s.postg, s.atktg)
-	e1:SetOperation(s.posop, s.atkop)
+	e1:SetTarget(s.postg)
+	e1:SetOperation(s.posop)
 	c:RegisterEffect(e1)
 	local e2=e1:Clone()
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -35,12 +35,6 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.filter(c)
 	return c:IsSetCard(0x38d) and c:IsType(TYPE_MONSTER) and c:IsFaceup()
-end
-function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(1-tp) and chkc:IsFaceup() end
-	if chk==0 then return Duel.IsExistingTarget(Card.IsFaceup,tp,0,LOCATION_MZONE,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
-	Duel.SelectTarget(tp,Card.IsFaceup,tp,0,LOCATION_MZONE,1,1,nil)
 end
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
