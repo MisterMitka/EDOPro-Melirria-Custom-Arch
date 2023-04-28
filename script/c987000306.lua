@@ -45,8 +45,9 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 		e2:SetReset(RESET_EVENT+RESETS_STANDARD)
 		e2:SetValue(tc:GetDefense()/2)
 		tc:RegisterEffect(e2)
+end
 function s.atkfil(c)
-	return c:IsFaceup() and c:IsSetCard(0x3dd)
+	return c:IsFaceup() and c:IsSetCard(0x38d)
 end
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
