@@ -26,6 +26,9 @@ function s.postg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local g=Duel.SelectTarget(tp,s.filter,tp,0,LOCATION_MZONE,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_POSITION,g,1,0,0)
 end
+function s.filter(c)
+	return c:IsSetCard(0x38d) and c:IsMonster()
+end
 function s.posop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
@@ -47,14 +50,14 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 		e3:SetType(EFFECT_TYPE_SINGLE)
 		e3:SetCode(EFFECT_UPDATE_ATTACK)
 		e3:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
-		e3:SetValue(d:GetAttack()*1.5)
+		e3:SetValue(d:GetAttack())
 		a:RegisterEffect(e3)
 		local  e4=Effect.CreateEffect(e:GetHandler())
 		e4:SetOwnerPlayer(tp)
 		e4:SetType(EFFECT_TYPE_SINGLE)
 		e4:SetCode(EFFECT_UPDATE_DEFENSE)
 		e4:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
-		e4:SetValue(d:GetDefense()*1.5)
+		e4:SetValue(d:GetDefense())
 		a:RegisterEffect(e4)
 	end
 end
