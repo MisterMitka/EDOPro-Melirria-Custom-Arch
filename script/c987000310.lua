@@ -21,4 +21,3 @@ function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk)
 		and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,LOCATION_HAND)
 end
-end
