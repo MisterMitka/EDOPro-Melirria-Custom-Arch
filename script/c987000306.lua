@@ -57,3 +57,4 @@ function s.atkfil(c)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 		sc:RegisterEffect(e1)
 end
+end
