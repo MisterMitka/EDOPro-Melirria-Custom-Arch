@@ -39,7 +39,7 @@ function s.thfilter(c)
 	return c:IsSetCard(0x3dd) and c:IsMonster() and c:IsAttribute(ATTRIBUTE_DARK) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chk==0 then return e:GetHandler():IsAbleToDeck() end
+	if chk==0 then return e:GetHandler():IsAbleToDeck() and Duel.IsPlayerCanSendtoHand(tp,1) end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,e:GetHandler(),1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SEARCH,nil,0,tp,1)
 end
