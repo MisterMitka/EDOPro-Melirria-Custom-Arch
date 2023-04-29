@@ -58,12 +58,13 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=g:GetFirst()
 	if tc then
 		if Duel.IsEnvironment(0x38d) and tc:IsAbleToHand() and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
+		Duel.SendtoDeck(tp,nil,REASON_EFFECT)
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tc)
 		else
 		Duel.SetTargetPlayer(tp)
-		Duel.SetTargetParam(tp+1)
-		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,tp+1)
+		Duel.SetTargetParam(tc+1)
+		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,tc+1)
 		end
 	end
 end
