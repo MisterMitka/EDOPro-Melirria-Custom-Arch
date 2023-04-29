@@ -62,8 +62,8 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ConfirmCards(1-tp,tc)
 		else
 		Duel.SetTargetPlayer(tp)
-		Duel.SetTargetParam(ct+1)
-		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,ct+1)
+		Duel.SetTargetParam(tp+1)
+		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,tp+1)
 		end
 	end
 end
