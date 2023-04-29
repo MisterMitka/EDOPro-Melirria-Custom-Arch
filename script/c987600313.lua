@@ -17,7 +17,7 @@ function s.initial_effect(c)
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_EQUIP)
 	e2:SetCode(EFFECT_UPDATE_ATTACK)
-	e2:SetValue(1500)
+	e2:SetValue(2000)
 	c:RegisterEffect(e2)
 	-- Special Summon
 	local e3=Effect.CreateEffect(c)
@@ -35,7 +35,7 @@ s.listed_names={987600325}
 	function s.filter(c)
 	return c:IsSetCard(0x3dd) and c:IsAttribute(ATTRIBUTE_DARK) and not c:IsSetCard(0x3de)
 end
-function s.sfilter(c)
+function s.thfilter(c)
 	return c:IsSetCard(0x3dd) and c:IsMonster() and c:IsAttribute(ATTRIBUTE_DARK) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
