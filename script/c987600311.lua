@@ -51,6 +51,7 @@ end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_GRAVE,0,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,1,tp,LOCATION_GRAVE)
+	Duel.SetOperationInfo(0,CATEGORY_SEARCH+CATEGORY_DRAW,nil,0,tp,1)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(id,1))
@@ -58,13 +59,12 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=g:GetFirst()
 	if tc then
 		if Duel.IsEnvironment(0x38d) and tc:IsAbleToHand() and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
-		Duel.SendtoDeck(tp,nil,REASON_EFFECT)
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tc)
+		Duel.ShuffleDeck(tp)
+		Duel.BreakEffect()
 		else
-		Duel.SetTargetPlayer(tp)
-		Duel.SetTargetParam(tc+1)
-		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,tc+1)
+		Duel.Draw(tp,1,REASON_EFFECT)==0 then return end
 		end
 	end
 end
