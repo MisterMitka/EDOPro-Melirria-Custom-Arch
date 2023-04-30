@@ -50,7 +50,7 @@ function s.thfilter(c)
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_GRAVE,0,1,1,nil) 
-		and Duel.IsPlayerCanSendtoDeck(g,nil,1,REASON_EFFECT)~=0 end
+		and Duel.IsPlayerCanSendtoDeck(tp,nil,1,REASON_EFFECT)~=0 end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,1,tp,LOCATION_GRAVE)
 	Duel.SetOperationInfo(0,CATEGORY_SEARCH,nil,0,tp,1)
 end
