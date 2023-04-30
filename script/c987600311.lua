@@ -49,8 +49,7 @@ function s.thfilter(c)
 	return c:IsSetCard(0x3dd) and c:IsAbleToDeck()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_HAND,0,1,1,nil)
-	if #g>0 and Duel.SendtoDeck(g,nil,1,REASON_EFFECT)~=0 then
+	if chk==0 then return Duel.IsExistingMatchingCard(tp,s.thfilter,tp,LOCATION_GRAVE,0,1,1,nil) and Duel.IsPlayerCanSendtoDeck(g,nil,1,REASON_EFFECT)~=0 end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,1,tp,LOCATION_GRAVE)
 	Duel.SetOperationInfo(0,CATEGORY_SEARCH,nil,0,tp,1)
 end
