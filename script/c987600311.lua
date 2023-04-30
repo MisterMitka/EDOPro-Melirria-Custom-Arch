@@ -58,7 +58,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_GRAVE,0,1,1,nil)
 	local tc=g:GetFirst()
 	if tc then
-		if Duel.IsEnvironment(0x38d) and tc:IsAbleToHand() and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
+		if Duel.IsEnvironment(0x38d) and Duel.SendtoDeck(tp,nil,1,REASON_EFFECT) and tc:IsAbleToHand() and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then	  
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tc)
 		Duel.ShuffleDeck(tp)
