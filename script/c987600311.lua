@@ -64,7 +64,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ShuffleDeck(tp)
 		Duel.BreakEffect()
 		else
-		Duel.Draw(tp,1,REASON_EFFECT)==0 then return end
+		Duel.Draw(tp,1,REASON_EFFECT) then return end
 		end
 	end
 end
